@@ -115,8 +115,8 @@ class MazeComponent extends JComponent {
 	paintCell(cells-1, cells-1,Color.pink, g);   // Mark exit cell
 	drawWall(cells-1, cells-1, 2, g);            // Open up exit cell
 
+		g.setColor(Color.yellow);
 		if (!mazeCreated) {
-			g.setColor(Color.yellow);
 			createMaze(cells, g);
 			mazeCreated = true; // Set the flag to true after creating the maze
 		}
