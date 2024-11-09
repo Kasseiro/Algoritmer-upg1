@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 
+import java.util.Arrays;
 import java.util.Random;
 
 
@@ -46,7 +47,7 @@ public class Ex1 {
     }   
 }
 class DisjointSet {
-	private int[] root;
+	public int[] root;
 
 	// Constructor
 	public DisjointSet(int n) {
@@ -82,6 +83,7 @@ class MazeComponent extends JComponent {
     protected int cellWidth;
     protected int cellHeight;
     Random random;
+	private boolean mazeCreated = false;
 
     // Draw a maze of size w*h with c*c cells
     MazeComponent(int w, int h, int c) {
@@ -113,13 +115,16 @@ class MazeComponent extends JComponent {
 	paintCell(cells-1, cells-1,Color.pink, g);   // Mark exit cell
 	drawWall(cells-1, cells-1, 2, g);            // Open up exit cell
 
-	g.setColor(Color.yellow);                 // Use yellow lines to remove existing walls
-	createMaze(cells, g);
+		if (!mazeCreated) {
+			g.setColor(Color.yellow);
+			createMaze(cells, g);
+			mazeCreated = true; // Set the flag to true after creating the maze
+		}
     }
 
     private void createMaze (int cells, Graphics g) {
-
-	// This is what you write
+		DisjointSet set = new DisjointSet(cells * cells);
+		System.out.println(Arrays.toString(set.root));
 
     }
 
@@ -153,4 +158,5 @@ class MazeComponent extends JComponent {
 	    break;
 	}
     }
+
 }
