@@ -45,6 +45,35 @@ public class Ex1 {
         SwingUtilities.invokeLater(r);
     }   
 }
+class DisjointSet {
+	private int[] root;
+
+	// Constructor
+	public DisjointSet(int n) {
+	root = new int[n];
+	for (int i = 0; i < n; i++) {
+	    root[i] = -1;
+	}
+
+	}
+	public int find(int x) {
+		if (root[x] < 0) {
+			return x;
+		} else {
+			return root[x] = find(root[x]);
+		}
+	}
+
+	public void union(int rot1, int rot2) {
+		if (root[rot2] < root[rot1]) {
+			root[rot2] += root[rot1];
+			root[rot1] = rot2;
+		} else {
+			root[rot1] += root[rot2];
+			root[rot2] = rot1;
+		}
+	}
+}
 
 class MazeComponent extends JComponent {
     protected int width;
