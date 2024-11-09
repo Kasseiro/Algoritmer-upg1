@@ -83,6 +83,7 @@ class MazeComponent extends JComponent {
     protected int cellWidth;
     protected int cellHeight;
     Random random;
+	protected int setCount;
 	private boolean mazeCreated = false;
 
     // Draw a maze of size w*h with c*c cells
@@ -93,6 +94,7 @@ class MazeComponent extends JComponent {
 	cellHeight = h/cells;     // Height of a cell
 	width =  c*cellWidth;     // Calculate exact dimensions of the component
 	height = c*cellHeight;
+	setCount = c*c;
 	setPreferredSize(new Dimension(width+1,height+1));  // Add 1 pixel for the border
     }
 
@@ -124,7 +126,13 @@ class MazeComponent extends JComponent {
 
     private void createMaze (int cells, Graphics g) {
 		DisjointSet set = new DisjointSet(cells * cells);
-		System.out.println(Arrays.toString(set.root));
+		random = new Random();
+		while (setCount > 1) {
+			int randomCell = random.nextInt(cells * cells-1);
+			int randomWall = random.nextInt(4);
+			int x = randomCell % cells;
+			int y = randomCell / cells;
+		}
 
     }
 
