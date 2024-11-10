@@ -15,7 +15,7 @@ public class Ex1 {
 	private static final int WIDTH = 800;  // Size of the window in pixels
 	private static final int HEIGHT = 800;
 
-	static int cells=20;    // The size of the maze is cells*cells (default is 20*20)
+	static int cells=100;    // The size of the maze is cells*cells (default is 20*20)
 
 	public static void main(String[] args) {
 
@@ -121,7 +121,7 @@ class MazeComponent extends JComponent {
 	}
 
 	private void createMaze(int cells, Graphics g) {
-		long startTime = System.currentTimeMillis(); // Start time
+		long startTime = System.nanoTime();// Start time
 		int totalCells = cells * cells;
 		DisjointSet set = new DisjointSet(totalCells);
 		Random random = new Random();
@@ -154,9 +154,7 @@ class MazeComponent extends JComponent {
 				}
 			}
 		}
-		long endTime = System.currentTimeMillis(); // End time
-		long duration = endTime - startTime; // Calculate duration
-		System.out.println("Time taken to create the maze: " + duration + " milliseconds");
+		System.out.println("\nExecution time for " + cells + "*" + cells + " grid: " + (float) (System.nanoTime()-startTime) / 1000000000 + " seconds\n");
 		System.out.println(Arrays.toString(set.root));
 	}
 
