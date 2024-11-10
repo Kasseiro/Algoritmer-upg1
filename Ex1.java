@@ -15,7 +15,7 @@ public class Ex1 {
 	private static final int WIDTH = 800;  // Size of the window in pixels
 	private static final int HEIGHT = 800;
 
-	static int cells=100;    // The size of the maze is cells*cells (default is 20*20)
+	static int cells=20;    // The size of the maze is cells*cells (default is 20*20)
 
 	public static void main(String[] args) {
 
@@ -93,7 +93,6 @@ class MazeComponent extends JComponent {
 		cellHeight = h/cells;     // Height of a cell
 		width =  c*cellWidth;     // Calculate exact dimensions of the component
 		height = c*cellHeight;
-		setCount = c * c ;
 		setPreferredSize(new Dimension(width+1,height+1));  // Add 1 pixel for the border
 	}
 
@@ -128,8 +127,8 @@ class MazeComponent extends JComponent {
 
 		while (set.root[set.find(0)] != -(totalCells)) { // Check if all cells are connected
 			int cell = random.nextInt(totalCells);      // Select a random cell
-			int x = cell / cells;                       // Convert to row
-			int y = cell % cells;                       // and column
+			int y = cell / cells;                       // Convert to row
+			int x = cell % cells;                       // and column
 
 			int wall = random.nextInt(4);               // Randomly pick a wall (0=left, 1=top, 2=right, 3=bottom)
 			int neighborX = x, neighborY = y;           // Determine neighbor coordinates
@@ -142,7 +141,7 @@ class MazeComponent extends JComponent {
 
 			// Check if neighbor is within bounds
 			if (neighborX >= 0 && neighborX < cells && neighborY >= 0 && neighborY < cells) {
-				int neighbor = neighborX * cells + neighborY;
+				int neighbor = neighborY * cells + neighborX;
 
 				// Only remove the wall if cells are not already connected
 				if (set.find(cell) != set.find(neighbor)) {
@@ -150,7 +149,6 @@ class MazeComponent extends JComponent {
 
 					// Remove the wall between the current cell and the neighbor
 					drawWall(x, y, wall, g);
-					setCount--;
 				}
 			}
 		}
