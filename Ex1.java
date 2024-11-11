@@ -153,7 +153,6 @@ class MazeComponent extends JComponent {
 			}
 		}
 		System.out.println("\nExecution time for " + cells + "*" + cells + " grid: " + (float) (System.nanoTime()-startTime) / 1000000000 + " seconds\n");
-		System.out.println(Arrays.toString(set.root));
 	}
 
 
